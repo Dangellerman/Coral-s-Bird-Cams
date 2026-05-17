@@ -13,7 +13,7 @@
         
         .ascii-container { 
             width: 100%; 
-            overflow-x: auto; /* Handles horizontal scrolling gracefully on smaller mobile displays */ 
+            overflow-x: auto; /* Handles horizontal scrolling gracefully if viewport limits are breached */ 
             background-color: transparent; 
             padding: 1.5rem 0; 
             border: none; 
@@ -54,7 +54,7 @@
             z-index: 1; 
         } 
 
-        /* ✅ FIX 1: Hover Zoom Effect Styles restricted to DESKTOP only */
+        /* Hover Zoom Effect Styles restricted to DESKTOP only */
         @media (hover: hover) and (pointer: fine) {
             .video-card:hover { 
                 transform: scale(1.9); 
@@ -109,7 +109,7 @@
             z-index: 3; 
         }
 
-        /* ✅ FIX 2: TAILORED MOBILE OVERRIDES FOR IPHONE */
+        /* TAILORED MOBILE OVERRIDES FOR IPHONE */
         @media screen and (max-width: 768px) {
             body {
                 padding: 1rem 0.5rem;
@@ -119,10 +119,12 @@
                 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
                 gap: 1.5rem;
             }
-            /* Dynamically scales your custom colorful ASCII down cleanly on small screens */
+            
+            /* ✅ FIXED: Automatically adjusts font size fluidly between phone and tablet screen widths */
             pre {
-                font-size: 1.9vw;
+                font-size: clamp(0.45rem, 1.85vw, 1.1rem);
             }
+            
             /* Deactivates the pointer shield so iPhone taps immediately register on the YouTube play button */
             .video-card::after {
                 display: none !important;
@@ -198,13 +200,14 @@
         document.querySelectorAll('iframe').forEach(frame => { 
             const videoKey = frame.getAttribute('data-vid'); 
             if (videoKey) { 
-                const endpointBase = "https://www.youtube.com"; 
-                // ✅ FIX 3: Added playsinline=1 to bypass native iOS player hijacking
+                const endpointBase = "https://youtube.com"; 
                 frame.src = endpointBase + "/embed/" + videoKey + "?autoplay=0&rel=0&playsinline=1"; 
             } 
         }); 
     </script> 
 </body> 
 </html>
+
+
 
 
