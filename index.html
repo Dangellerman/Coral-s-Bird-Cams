@@ -11,14 +11,17 @@
         /* Clean 1980s BBS Terminal Header Styling */
         header { margin-bottom: 3rem; text-align: center; width: 100%; max-width: 1200px; } 
         
+        /* ✅ IMPROVEMENT: Container scales text inside its boundaries on mobile */
         .ascii-container { 
             width: 100%; 
-            overflow-x: auto; /* Handles horizontal scrolling gracefully if viewport limits are breached */ 
+            overflow: hidden; /* Prevent horizontal scrollbars on mobile */
             background-color: transparent; 
             padding: 1.5rem 0; 
             border: none; 
             box-shadow: none; 
             text-align: center; 
+            display: flex;
+            justify-content: center;
         } 
         
         pre { 
@@ -28,6 +31,8 @@
             display: inline-block; 
             text-align: left; 
             font-weight: bold; 
+            white-space: pre; /* Prevents ASCII layout lines from wrapping down */
+            transform-origin: top center; /* Keeps text anchored tightly to the top layout bounds */
         } 
 
         /* Centered Grid Frame Layout */
@@ -114,15 +119,21 @@
             body {
                 padding: 1rem 0.5rem;
             }
+            header {
+                margin-bottom: 1.5rem;
+            }
             .gallery-grid {
                 padding: 1rem;
                 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
                 gap: 1.5rem;
             }
             
-            /* ✅ FIXED: Automatically adjusts font size fluidly between phone and tablet screen widths */
+            /* ✅ FIXED: Uses container queries to scale down the text perfectly to fit mobile widths */
+            .ascii-container {
+                container-type: inline-size;
+            }
             pre {
-                font-size: clamp(0.45rem, 1.85vw, 1.1rem);
+                font-size: 1.15cqw; /* Scale relative to its own direct container size */
             }
             
             /* Deactivates the pointer shield so iPhone taps immediately register on the YouTube play button */
@@ -207,6 +218,7 @@
     </script> 
 </body> 
 </html>
+
 
 
 
