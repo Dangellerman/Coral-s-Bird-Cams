@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coral's Bird Cams Terminal</title>
+    
     <style>
         * {
             box-sizing: border-box;
@@ -47,6 +48,44 @@
             white-space: pre;
             transform-origin: top center;
         }
+
+        /* ✅ NEW: Terminal Prompt Layout */
+        .terminal-prompt-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2.5rem;
+            margin: 0 auto 2rem auto;
+            font-family: Consolas, Monaco, 'Lucida Console', 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .prompt-prefix {
+            color: #bd00ff;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        .command-text {
+            color: #66ccff;
+            margin-right: 12px;
+            opacity: 0.34;
+        }
+        #terminalSearch {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #aae6ff;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            width: 100%;
+            caret-color: #aae6ff;
+        }
+        #terminalSearch::placeholder {
+            color: #444444;
+        }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -63,10 +102,18 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, opacity 0.2s ease;
             position: relative;
             z-index: 1;
+            opacity: 1;
         }
+
+        /* ✅ NEW: Clean CSS Class for hiding cards during filtering */
+        .video-card.hidden {
+            display: none !important;
+            opacity: 0 !important;
+        }
+
         @media (hover: hover) and (pointer: fine) {
             .video-card:hover {
                 transform: scale(1.9);
@@ -106,6 +153,10 @@
             header {
                 margin-bottom: 1.5rem;
             }
+            .terminal-prompt-container {
+                padding: 0 1rem;
+                font-size: 1rem;
+            }
             .gallery-grid {
                 padding: 1rem;
                 grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -132,6 +183,13 @@
             </pre>
         </div>
     </header>
+
+    <!-- ✅ NEW: Retro Command Prompt HTML Asset Element -->
+    <div class="terminal-prompt-container">
+        <span class="command-text">search</span>
+        <input type="text" id="terminalSearch" placeholder="..." autocomplete="off" spellcheck="false">
+    </div>
+
     <main class="gallery-grid">
         <!-- Bald Eagle Video Card -->
         <div class="video-card">
@@ -280,7 +338,9 @@
             <div class="video-title">Poole Harbour Ospreys</div>
         </div>
     </main>
+
     <script>
+        // 1. Initializing the YouTube embeds correctly 
         document.querySelectorAll('iframe').forEach(frame => {
             const videoKey = frame.getAttribute('data-vid');
             if (videoKey) {
@@ -288,9 +348,25 @@
                 frame.src = endpointBase + "/embed/" + videoKey + "?autoplay=0&rel=0&playsinline=1";
             }
         });
+
+        // 2. ✅ NEW: Secure Live Search Script
+        document.getElementById('terminalSearch').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            
+            document.querySelectorAll('.video-card').forEach(card => {
+                const titleText = card.querySelector('.video-title').textContent.toLowerCase();
+                
+                if (titleText.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>
+
 
 
 
