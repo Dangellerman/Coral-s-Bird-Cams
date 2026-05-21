@@ -49,6 +49,7 @@
             transform-origin: top center;
         }
 
+        /* ✅ NEW: Terminal Prompt Layout */
         .terminal-prompt-container {
             display: flex;
             align-items: center;
@@ -107,6 +108,7 @@
             opacity: 1;
         }
 
+        /* ✅ NEW: Clean CSS Class for hiding cards during filtering */
         .video-card.hidden {
             display: none !important;
             opacity: 0 !important;
@@ -182,18 +184,21 @@
         </div>
     </header>
 
+    <!-- ✅ NEW: Retro Command Prompt HTML Asset Element -->
     <div class="terminal-prompt-container">
         <span class="command-text">search</span>
         <input type="text" id="terminalSearch" placeholder="..." autocomplete="off" spellcheck="false">
     </div>
 
     <main class="gallery-grid">
+        <!-- Bald Eagle Video Card -->
         <div class="video-card">
             <div class="video-container">
                 <iframe data-vid="B4-L2nfGcuE" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
             <div class="video-title">Big Bear Bald Eagle Cam</div>
         </div>
+        <!-- Remaining Original Bird Stream Assets -->
         <div class="video-card">
             <div class="video-container">
                 <iframe data-vid="x10vL6_47Dw" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
@@ -220,9 +225,9 @@
         </div>
         <div class="video-card">
             <div class="video-container">
-                <iframe data-vid="NwUMHCQb_f8" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+                <iframe data-vid="iLNXliI0dAI" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
-            <div class="video-title">WBU Barred Owls</div>
+            <div class="video-title">Collins Creek Barred Owls</div>
         </div>
         <div class="video-card">
             <div class="video-container">
@@ -250,15 +255,15 @@
         </div>
         <div class="video-card">
             <div class="video-container">
-                <iframe data-vid="3TZMWm3yfJY" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+                <iframe data-vid="uPTbEyoM0TQ" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
-            <div class="video-title">WBU Owls Outside</div>
+            <div class="video-title">Inside a Kestrel Nest</div>
         </div>
         <div class="video-card">
             <div class="video-container">
-                <iframe data-vid="BtubSVxucnY" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+                <iframe data-vid="cWfPMTuzjzA" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
-            <div class="video-title">Yorkshire Swan Nest</div>
+            <div class="video-title">Hatched Baby Swans</div>
         </div>
         <div class="video-card">
             <div class="video-container">
@@ -335,6 +340,7 @@
     </main>
 
     <script>
+        // 1. Initializing the YouTube embeds correctly 
         document.querySelectorAll('iframe').forEach(frame => {
             const videoKey = frame.getAttribute('data-vid');
             if (videoKey) {
@@ -343,6 +349,7 @@
             }
         });
 
+        // 2. ✅ NEW: Secure Live Search Script
         document.getElementById('terminalSearch').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase().trim();
             
@@ -359,6 +366,7 @@
     </script>
 </body>
 </html>
+
 
 
 
