@@ -95,6 +95,7 @@
             padding: 1.5rem 2.5rem;
             margin: 0 auto;
         }
+
         .video-card {
             background-color: #1e1e1e;
             border-radius: 8px;
@@ -108,7 +109,6 @@
             opacity: 1;
         }
 
-        /* ✅ NEW: Clean CSS Class for hiding cards during filtering */
         .video-card.hidden {
             display: none !important;
             opacity: 0 !important;
@@ -354,6 +354,7 @@
                 <iframe data-vid="yPq9aNukckQ" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
             <div class="video-title">Glen Hazel Eagles</div>
+        </div>
         <div class="video-card">
             <div class="video-container">
                 <iframe data-vid="0jgC1gJjFNo" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
@@ -372,7 +373,7 @@
             </div>
             <div class="video-title">Simi Valley Hummingbirds</div>
         </div>
-        <div class="video-card">
+       <div class="video-card">
             <div class="video-container">
                 <iframe data-vid="XOcQ5KWvK-w" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
@@ -389,7 +390,8 @@
                 <iframe data-vid="6f-D2AjeEi0" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
             <div class="video-title">Florida Barn Owls</div>
-        </div>
+        </div>            
+        
     </main>
 
     <script>
@@ -402,7 +404,6 @@
             }
         });
 
-        // 2. ✅ NEW: Secure Live Search Script
         document.getElementById('terminalSearch').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase().trim();
             
@@ -419,6 +420,7 @@
     </script>
 </body>
 </html>
+
 
 
 
