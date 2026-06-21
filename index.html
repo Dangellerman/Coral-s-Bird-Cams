@@ -49,7 +49,6 @@
             transform-origin: top center;
         }
 
-        /* ✅ NEW: Terminal Prompt Layout */
         .terminal-prompt-container {
             display: flex;
             align-items: center;
@@ -169,6 +168,19 @@
                 font-size: 1.5cqw;
             }
         }
+            
+        .is-edge @media (hover: hover) and (pointer: fine) {
+            .video-card:hover {
+            transform: scale(1.4) !important; 
+            }
+}
+
+/* Global Safety Catch: Stops elements from spilling past screen edges */
+body, html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
     </style>
 </head>
 <body>
@@ -393,6 +405,13 @@
         </div>            
         
     </main>
+
+    <script>
+    // Detect if the browser is specifically Microsoft Edge Chromium
+    if (navigator.userAgent.indexOf("Edg") !== -1) {
+        document.documentElement.classList.add("is-edge");
+        }
+    </script>
 
     <script>
         // 1. Initializing the YouTube embeds correctly 
